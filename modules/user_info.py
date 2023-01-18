@@ -56,20 +56,6 @@ async def get_full_user_inf(client: Client, message: Message):
         user = response.users[0]
         full_user = response.full_user
 
-        await client.unblock_user("@creationdatebot")
-        try:
-            response = await interact_with(
-                await client.send_message("creationdatebot", f"/id {user.id}")
-            )
-        except RuntimeError:
-            creation_date = "None"
-        else:
-            creation_date = response.text
-        await client.delete_messages(
-            "@creationdatebot", interact_with_to_delete
-        )
-        interact_with_to_delete.clear()
-
         if user.username is None:
             username = "None"
         else:
@@ -77,7 +63,6 @@ async def get_full_user_inf(client: Client, message: Message):
         about = "None" if full_user.about is None else full_user.about
         user_info = f"""|=<b>Username: {username}
 |-Id: <code>{user.id}</code>
-|-Account creation date: <code>{creation_date}</code>
 |-Bot: <code>{user.bot}</code>
 |-Scam: <code>{user.scam}</code>
 |-Name: <code>{user.first_name}</code>
