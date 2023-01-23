@@ -5,7 +5,6 @@
 __pycache__/
 /venv/
 
-/utils/config.py
 /modules/custom_modules
 /ytdlp_down/
 /json/
