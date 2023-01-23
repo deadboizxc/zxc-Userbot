@@ -25,7 +25,7 @@ commit_time = (
         .strftime("%Y-%m-%d")
     )
 
-userbot_version = f"v4.0-RE-stable"
+userbot_version = f"v4.1-RE-stable"
 
 #userbot_version = f"v2.0.RE-{commit_time}"
 #userbot_version = f"v2.0-RE-{commit_time}-{gitrepo.head.commit.hexsha[:6]}"
