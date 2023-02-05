@@ -6,7 +6,7 @@ import requests
 from utils.scripts import import_library
 yt_dlp = import_library("yt_dlp")
 
-ver = '2.0-rc'
+ver = '4.1-stable'
 
 class AudioFile:
 
@@ -51,37 +51,11 @@ class AudioFile:
             self.thumm = str(self.thumm_link.split('/')[-1])
             os.chdir(self.json_filepath)
 
-            with open(self.json_filepath+'/'+self.json_name, 'w', encoding='utf8') as file:
-                json.dump(data, file, ensure_ascii=False,  sort_keys=True, indent=4)
-
 # download preview for audio files
         os.chdir(self.module_dir)
         r = requests.get(self.thumm_link)
         with open(self.thumm, 'wb') as code:
             code.write(r.content)
-
-# print json
-    def show_json(self):
-        with open(self.json_filepath+'/'+self.json_name, encoding='utf-8') as file:
-            info = file.read()
-            print(info)
-        os.chdir(self.bot_main_dir)
-
-# displays detailed information from json file
-    def info(self):
-        with open(self.json_filepath+'/'+self.json_name, encoding='utf-8') as file:
-            info = json.load(file)
-            json_name = info['title']+'-'+info['id']+'.json'
-            filename = info['title']+'.'+self.audioformat
-            thumm_link = info['thumbnail']
-            thumm = str(self.thumm_link.split('/')[-1])
-        print(
-        f'''
-        {json_name}\n
-        {filename}\n
-        {thumm_link}\n
-        {thumm}\n
-        ''')
 
 # removes the preview  file from
     def remove_thumb(self):
@@ -177,36 +151,11 @@ class VideoFile:
             self.thumm_link = data['thumbnail']
             self.thumm = str(self.thumm_link.split('/')[-1])
 
-        with open(self.json_filepath+'/'+self.json_name, 'w', encoding='utf8') as file:
-            json.dump(data, file, ensure_ascii=False,  sort_keys=True, indent=4)
-
 # download preview for video files
         os.chdir(self.module_dir)
         r = requests.get(self.thumm_link)
         with open(self.thumm, 'wb') as code:
             code.write(r.content)
-
-# download preview for video files
-    def show_json(self):
-        with open(self.json_filepath+'/'+self.json_name, encoding='utf-8') as file:
-            info = file.read()
-            print(info)
-
-# displays detailed information from json file
-    def info(self):
-        with open(self.json_filepath+'/'+self.json_name, encoding='utf-8') as file:
-            info = json.load(file)
-            json_name = info['id']+'-'+info['tile']+'.json'
-            filename = info['title']+'.'+info['formats'][-2]['ext']
-            thumm_link = info['thumbnail']
-            thumm = str(self.thumm_link.split('/')[-1])
-        print(
-        f'''
-        {json_name}\n
-        {filename}\n
-        {thumm_link}\n
-        {thumm}\n
-        ''')
 
 # removes the preview  file from
     def remove_thumb(self):
@@ -262,16 +211,5 @@ class VideoFile:
 
 
 if __name__ == '__main__':
-#   if the code is run as a script
+    pass
 
-    linka = 'https://youtu.be/ZdLymG0Mb2Q'
-    x=AudioFile(linka)
-    x.download_file()
-    x.info()
-
-#   testing function
-#
-#   y=VideoFile(linka)
-#   y.download_file()
-#   y.info()
-#
