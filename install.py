@@ -6,9 +6,9 @@ from utils.config import *
 
 if __name__ == "__main__":
     app = Client(
-        "my_account_2",
-        api_id=API_ID_2,
-        api_hash=API_HASH_2,
+        "my_account_1",
+        api_id=API_ID_1,
+        api_hash=API_HASH_1,
         hide_password=True,
     )
 
